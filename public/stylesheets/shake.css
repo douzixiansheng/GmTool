@@ -1,0 +1,4 @@
+.modal-open {
+    overflow-y: auto !important;
+    padding-right: 0 !important;
+}

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+   <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+        <title> - Bootstrap Table</title>
+        <meta name="keywords" content="">
+        <meta name="description" content="">
+
+
+        <link rel="shortcut icon" href="favicon.ico">
+        <link href="stylesheets/bootstrap.min.css?v=3.3.7" rel="stylesheet">
+        <link href="stylesheets/font-awesome.css?v=4.4.0" rel="stylesheet">
+        <link href="stylesheets/plugins/iCheck/custom.css" rel="stylesheet">
+        <!-- Data Tables -->
+        <link href="stylesheets/jquery.dataTables.min.css" rel="stylesheet">
+        <!--下拉框-->
+        <link href="stylesheets/bootstrap-select.css" rel="stylesheet">
+
+        <link href="stylesheets/animate.css" rel="stylesheet">
+        <link href="stylesheets/style-main.css?v=4.1.0" rel="stylesheet">
+        <link href="stylesheets/shake.css" rel="stylesheet">
+
+        <!--富文本-->
+        <link href="stylesheets/plugins/summernote/summernote.css" rel="stylesheet">
+        <link href="stylesheets/plugins/summernote/summernote-bs3.css" rel="stylesheet">
+        <!-- 全局js -->
+        <script src="javascripts/jquery.min.js?v=2.1.4"></script>
+        <script src="javascripts/bootstrap.min.js?v=3.3.7"></script>
+
+        <script src="javascripts/plugins/jeditable/jquery.jeditable.js"></script>
+
+        <!-- Data Tables -->
+        <script src="javascripts/jquery.dataTables.min.js"></script>
+
+        <!-- 自定义js -->
+        <script src="javascripts/content.js?v=1.0.0"></script>
+        <script src="javascripts/plugins/iCheck/icheck.min.js"></script>
+        <script src="bodyscripts/dragrun.js"></script>
+        <script src="bodyscripts/group_manager.js"></script>
+         <!-- Chosen -->
+         <script src="javascripts/demo/form-advanced-demo.js"></script>
+         <!-- bootstrap-select -->
+         <script src="javascripts/bootstrap-select.js"></script>
+        <!-- SUMMERNOTE -->
+        <script src="javascripts/plugins/summernote/summernote.min.js"></script>
+        <script src="javascripts/plugins/summernote/summernote-zh-CN.js"></script>
+       
+       <script>
+          
+       </script>
+   </head>
+   <body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <a href="javascript:void(0)" type="button" class="glyphicon glyphicon-plus" id="add_group" onclick="addGroup()">新增区组</a>&nbsp;&nbsp;
+                        <a type="button" class="glyphicon glyphicon-pencil" id="edit_group" onclick="editGroup()">编辑区组</a>&nbsp;&nbsp;
+                        <a type="button" class="glyphicon glyphicon-list-alt">附加属性</a>&nbsp;&nbsp;
+                        <a type="button" class="glyphicon glyphicon-comment" id="notice_group" onclick="noticeGroup()">编辑公告</a>&nbsp;&nbsp;
+                        <a type="button" class="glyphicon glyphicon-book">功能模块</a>&nbsp;&nbsp;
+                        <a type="button" class="glyphicon glyphicon-trash">删除区组</a>&nbsp;&nbsp;
+                        <a type="button" class="glyphicon glyphicon-saved">确认配置生效</a>&nbsp;&nbsp;
+                    </div>
+                    <div class="ibox-content">
+
+                        <table class="table table-striped table-bordered table-hover dataTables-example" id="editable">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>名称</th>
+                                    <th>渠道</th>
+                                    <th>版本号</th>
+                                    <th>最低版本号</th>
+                                    <th>版本列表</th>
+                                </tr>
+                            </thead>
+                           <tbody id="tEditTab"></tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 新建面板-->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        模态框（Modal）标题
+                    </h4>
+                </div>
+                <div class="modal-body" style="padding-left: 70px">
+                    <span>区组信息</span>
+                    <div class="divider"></div>
+                    <hr class="simple" color="#6f5499">
+                    <div class="form-group">
+                        <div class="form-inline" role="form">
+                            <label for="name" class="col-sm-2 control-label">区组ID:</label>&nbsp;&nbsp;
+                            <input type="text" placeholder="xxx" class="form-control" style="width:70%">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-inline" role="form">
+                            <label for="name" class="col-sm-2 control-label">区组名称:</label>&nbsp;&nbsp;
+                            <input type="text" placeholder="xxx" class="form-control" style="width:70%">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-inline" role="form">
+                            <label for="name" class="col-sm-2 control-label">版本号:</label>&nbsp;&nbsp;
+                            <input type="text" placeholder="xxx" class="form-control" style="width:70%">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-inline" role="form">
+                            <label for="name" class="col-sm-2 control-label">最低版本号:</label>&nbsp;&nbsp;
+                            <input type="text" placeholder="xxx" class="form-control" style="width:70%">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                            <div class="form-inline" role="form">
+                                <label for="name" class="col-sm-2 control-label">MIN:</label>&nbsp;&nbsp;
+                                <input type="text" placeholder="xxx" class="form-control" style="width:70%">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-inline" role="form">
+                                <label for="name" class="col-sm-2 control-label">MAX:</label>&nbsp;&nbsp;
+                                <input type="text" placeholder="xxx" class="form-control" style="width:70%">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                        <div class="form-inline" role="form">
+                            <label for="name" class="col-sm-2 control-label">渠道:</label>&nbsp;&nbsp;
+                            <div class="input-group">
+                                    <input type ="text" placeholder="xxx" class="form-control" readonly="readonly" value="看见了打飞机垃圾的翻看的接口就埃里克森打飞机可">
+                                <span class="input-group-addon">
+                                <a href="#" class="btn-block" onclick="selectGroupTag()">选择</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        提交更改
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <!-- 编辑面板-->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        模态框（Modal）标题
+                    </h4>
+                </div>
+                <div class="modal-body" style="padding-left: 70px">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 编辑公告-->
+    <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="noticeModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="noticeModalLabel">
+                        模态框（Modal）标题
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <select class="selectpicker" data-live-search="true" id="notice_select" onchange="noticeSelect()">
+                        <option value="1">严厉打击代充</option>
+                        <option value="2">游戏公告</option>
+                        <option value="3">严厉打击外挂</option>
+                    </select>
+                    <hr>
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-content no-padding">
+                            <div class="summernote" id="notice_body">
+                           </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        提交更改
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 这个是渠道的面板-->
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel2">
+                        <label><input type="checkbox" onchange="" class="i-checks">全选</label>
+                    </h4>
+                </div>
+                <div class="modal-body" id="channel_panel">
+                    <span>放渠道多选框</span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        提交更改
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    </body>
+</html>

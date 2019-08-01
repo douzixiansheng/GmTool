@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="stylesheets/bootstrap.min.css?v=3.3.6"></link>
+        <link rel="stylesheet" href="stylesheets/login.css"></link>
+        <link rel="stylesheet" href="stylesheets/style-main.css"></link>
+        <link rel="stylesheet" href="stylesheets/font-awesome.css?v=4.4.0"></link>
+        <link rel="stylesheet" href="stylesheets/animate.css"></link>
+        <title><%= title %></title>
+
+        <script src="javascripts/bootstrap.min.js"></script>
+        <script src="javascripts/jquery-3.2.1.min.js"></script>
+        <script>
+            let end_time = <%= time %>;
+            function countZero(){
+                end_time--;
+                if(end_time <= 0)
+                    stepUrl();
+                $('#time_err').html(end_time);
+            }
+
+            function stepUrl(){
+                window.parent.frames.location.href='/';
+            }
+
+            window.setInterval("countZero()", 1000);
+        </script>
+    </head>
+    <body class="gray-bg">
+        <div class="wrapper wrapper-content">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="middle-box text-center animated fadeInDown">
+                        <div class="alert alert-danger">
+                            <h4>警告</h4>
+                            <p>很抱歉，<%= name %>! 您登录的账号或者密码 输入有误</p>
+                            <hr>
+                            <p>系统将在<span id='time_err'><%= time %></span>秒后跳转</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </body>
+</html>

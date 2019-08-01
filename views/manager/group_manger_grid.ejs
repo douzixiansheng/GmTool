@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initialscale=1.0">
+        <meta name="keywords" content="">
+        <meta name="description" content="">
+
+        <link rel="shortcut icon" href="favicon.ico">
+        <link href="stylesheets/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+        <link href="stylesheets/font-awesome.css?v=4.4.0" rel="stylesheet">
+
+        <link href="stylesheets/plugins/jqgrid/ui.jqgrid.css?0820" rel="stylesheet">
+        <link href="stylesheets/animate.css" rel="stylesheet">
+        <link href="stylesheets/style-main.css?v=4.1.0" rel="stylesheet">
+
+        <style>
+            #alertmod_table_list_2{
+                top: 900px !important;
+            }
+        </style>
+
+        <script src="javascripts/jquery.min.js?v=2.1.4"></script>
+        <script src="javascripts/bootstrap.min.js?v=3.3.6"></script>
+        <script src="javascripts/plugins/peity/jquery.peity.min.js"></script>
+        <!-- jqGrid -->
+        <script src="javascripts/plugins/jqgrid/i18n/grid.locale-cn.js?0820"></script>
+        <script src="javascripts/plugins/jqgrid/jquery.jqGrid.min.js?0820"></script>
+
+        <!-- 自定义js -->
+        <script src="javascripts/content.js?v=1.0.0"></script>
+
+        <script>
+            $(document).ready(function(){
+                $.jgrid.defaults.styleUI = 'Bootstrap';
+                var mydata = [
+                    {
+                        id: "1",
+                        invdate: "2010-05-24",
+                        name: "test",
+                        note: "note",
+                        tax: "10.00",
+                        total: "2111.00"
+                    },
+                    {
+                        id: "29",
+                        invdate: "2007-09-01",
+                        name: "test3",
+                        note: "note3",
+                        amount: "400.00",
+                        tax: "30.00",
+                        total: "430.00"
+                    }
+                ];
+
+                // Configuration for jqGrid Example 2
+                $("#table_list_2").jqGrid({
+                    toolbar:[true,"top"],
+                    data: mydata,
+                    //从服务器端返回的数据类型,例如json
+                    datatype: "local",
+                    height: 150,
+                    autowidth: true,
+                    shrinkToFit: true,
+                    //在grid上显示记录条数，这个参数是要被传递到后台
+                    rowNum: 20,
+                    rowList: [10, 20, 30],
+                    //列显示名称，是一个数组对象
+                    colNames: ['序号', '日期', '客户', '金额', '运费', '总额', '备注'],
+                    colModel: [
+                        {
+                            name: 'id',  //列显示名称
+                            index: 'id', //传到服务器端用来排序用的列名称
+                            editable: true,//
+                            width: 60,
+                            sorttype: "int",
+                            search: true
+                        },
+                        {
+                            name: 'invdate',
+                            index: 'invdate',
+                            editable: true,
+                            width: 90,
+                            sorttype: "date",
+                            formatter: "date"
+                        },
+                        {
+                            name: 'name',
+                            index: 'name',
+                            editable: true,
+                            width: 100
+                        },
+                        {
+                            name: 'amount',
+                            index: 'amount',
+                            editable: true,
+                            width: 80,
+                            align: "right",
+                            sorttype: "float",
+                            formatter: "number"
+                        },
+                        {
+                            name: 'tax',
+                            index: 'tax',
+                            editable: true,
+                            width: 80,
+                            align: "right",
+                            sorttype: "float"
+                        },
+                        {
+                            name: 'total',
+                            index: 'total',
+                            editable: true,
+                            width: 80,
+                            align: "right",
+                            sorttype: "float"
+                        },
+                        {
+                            name: 'note',
+                            index: 'note',
+                            editable: true,
+                            width: 100,
+                            sortable: false
+                        }
+                    ],
+                    //定义翻页用到导航栏，必须是有效的HTML的元素
+                    pager: "#pager_list_2",
+                    //定义是否要显示总记录数
+                    viewrecords: true,
+                    //表格名称
+                    caption: "区组管理",
+                    add: true,
+                    edit: true,
+                    //新增按钮上的文字
+                    addtext: 'Add',
+                    edittext: 'Edit',
+                    hidegrid: false
+                 });
+
+                 // Add selection
+                $("#table_list_2").setSelection(4, true);
+
+
+                 // Setup buttons
+                var qnav = $("#table_list_2").jqGrid('navGrid', '#pager_list_2', {
+                    edit: false,
+                    add: false,
+                    del: false,
+                    search: false,
+                    addtext:'新增',
+                    addtitle:'采用了addtitle'
+                }, {
+                    height: 200,
+                    reloadAfterSubmit: true
+                 });    
+
+                 //工具栏增加自定义按钮
+                 qnav.navButtonAdd('#pager_list_2', {
+                     caption:'借阅',
+                     title:'jieyue'
+                    
+                 })
+                // Add responsive to jqGrid
+                $(window).bind('resize', function () {
+                    var width = $('.jqGrid_wrapper').width();
+                    $('#table_list_2').setGridWidth(width);
+                });
+
+                $('#t_table_list_2').css('height','100%');
+                var mytoolbar = 
+                '<div class="col-sm-12"><button type="button" class="btn btn-default btn-sm">'+
+                    '<span class="glyphicon glyphicon-user"></span>新增</button></div>';
+                $("#t_table_list_2").append(mytoolbar);
+                
+
+            });
+            function haha(){
+                alert('hahah')
+            }
+        </script>
+    </head>
+    <body class="gray-bg">
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-sm-12">
+                        <div class="ibox">
+                            <div class="jqGrid_wrapper">
+                                <div id="pager_list_2"></div>
+                                <table id="table_list_2"></table>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
