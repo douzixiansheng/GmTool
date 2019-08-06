@@ -22,18 +22,19 @@
         <script src="javascripts/plugins/flot/jquery.flot.pie.js"></script>
         <!-- 自定义js -->
         <script src="javascripts/content.js"></script>
+        <script src="bodyscripts/right.js"></script>
    </head>
     <body class="gray-bg">
         <div class="wrapper wrapper-content">
             <div class="row">
-                <div class="col-sm-10">
+                <div class="col-sm-12">
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="row row-sm text-center">
                                 <div class="col-xs-6">
                                     <div class="panel padder-v item">
-                                        <div class="h1 text-info font-thin h1">521</div>
-                                        <span class="text-muted text-xs">同比增长</span>
+                                        <div class="h1 text-info font-thin h1" id="div_hostname">521</div>
+                                        <span class="text-muted text-xs">主机名称</span>
                                         <div class="top text-right w-full">
                                             <i class="fa fa-caret-down text-warning m-r-sm"></i>
                                         </div>
@@ -41,8 +42,8 @@
                                 </div>
                                 <div class="col-xs-6">
                                     <div class="panel padder-v item bg-info">
-                                        <div class="h1 text-fff font-thin h1">521</div>
-                                        <span class="text-muted text-xs">今日访问</span>
+                                        <div class="h1 text-fff font-thin h1" id="platform">521</div>
+                                        <span class="text-muted text-xs">系统平台</span>
                                         <div class="top text-right w-full">
                                             <i class="fa fa-caret-down text-warning m-r-sm"></i>
                                         </div>
@@ -50,8 +51,8 @@
                                 </div>
                                 <div class="col-xs-6">
                                     <div class="panel padder-v item bg-primary">
-                                        <div class="h1 text-fff font-thin h1">521</div>
-                                        <span class="text-muted text-xs">销售数量</span>
+                                        <div class="h1 text-fff font-thin h1" id="CPU">521</div>
+                                        <span class="text-muted text-xs">CPU架构</span>
                                         <div class="top text-right w-full">
                                             <i class="fa fa-caret-down text-warning m-r-sm"></i>
                                         </div>
@@ -63,6 +64,60 @@
                                         <span class="text-muted text-xs">近日盈利</span>
                                         <div class="bottom text-left">
                                             <i class="fa fa-caret-up text-warning m-l-sm"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-title" style="border-bottom:none;background:#fff;">
+                                    <h5>服务器状态</h5>
+                                </div>
+                                <div class="ibox-content" style="border-top:none;">
+                                    <div id="flot-line-chart-moving" style="height:217px;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-9" style="padding-right:0;">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-title" style="border-bottom:none;background:#fff;">
+                                    <h5>往年数据</h5>
+                                </div>
+                                <div class="ibox-content" style="border-top:none;">
+                                    <div id="yesterday" style="height:217px;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3" style="padding-left:0;">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-content" style="border-top:none;background-color:#e4eaec;">
+                                    <h5>新增玩家</h5>
+                                    <div class="progress progress-striped active">
+                                        <div style="width: 75%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="75" role="progressbar" class="progress-bar">
+                                            <span class="sr-only"></span>
+                                        </div>
+                                    </div>
+                                    <h5>流失玩家</h5>
+                                    <div class="progress progress-striped active">
+                                        <div style="width: 75%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="75" role="progressbar" class="progress-bar progress-bar-warning">
+                                            <span class="sr-only"></span>
+                                        </div>
+                                    </div>
+                                    <h5>新增玩家</h5>
+                                    <div class="progress progress-striped active">
+                                        <div style="width: 75%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="75" role="progressbar" class="progress-bar .progress-bar-danger">
+                                            <span class="sr-only"></span>
+                                        </div>
+                                    </div>
+                                    <h5>新增玩家</h5>
+                                    <div class="progress progress-striped active">
+                                        <div style="width: 75%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="75" role="progressbar" class="progress-bar progress-bar-info">
+                                            <span class="sr-only"></span>
                                         </div>
                                     </div>
                                 </div>

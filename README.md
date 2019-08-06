@@ -2,7 +2,6 @@
 - 采用 node.js + express + redis  
 - 有想学习node.js的 可以交流探讨
 
-
 > 基础操作
 - 安装依赖  npm install
 - 启动文件为 app.js,  执行 node  app.js
